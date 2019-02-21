@@ -1,4 +1,3 @@
-/* * @Author: wuyanbin beijingwyb@163.com * @Date: 2018-05-03 14:22:15 * @Last Modified by: wuyanbin beijingwyb@163.com * @Last Modified time: 2018-05-03 14:22:15 */
 <template>
   <div>
     <!--search bar layout-->
@@ -77,22 +76,22 @@
 </template>
 
 <script>
-  import axios from "axios";
-  import "swiper/dist/css/swiper.css";
-  import { swiper, swiperSlide } from "vue-awesome-swiper";
-  import floorComponent from "../component/floorComponent";
-  import goodsInfo from "../component/goodsInfoComponent";
-  import { toMoney } from "@/filter/moneyFilter.js";
+  import axios from 'axios';
+  import 'swiper/dist/css/swiper.css';
+  import { swiper, swiperSlide } from 'vue-awesome-swiper';
+  import floorComponent from '../component/floorComponent';
+  import goodsInfo from '../component/goodsInfoComponent';
+  import { toMoney } from '@/filter/moneyFilter.js';
   import url from '@/serviceAPI.config.js'
 
 
   export default {
     data() {
       return {
-        locationIcon: require("../../assets/images/location.png"),
+        locationIcon: require('../../assets/images/location.png'),
         bannerPicArray: [],
         category: [],
-        adBanner: "",
+        adBanner: '',
         recommendGoods: [],
         swiperOption: {
           loop: true,
@@ -119,9 +118,9 @@
     },
     created() {
       axios({
-          url: url.Home,
-          method: "get"
-        })
+        url: url.Home,
+        method: 'get'
+      })
         .then(response => {
           console.log(response);
           if (response.status == 200) {

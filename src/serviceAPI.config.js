@@ -1,9 +1,10 @@
-const BASEURL = 'https://easy-mock.com/mock/5aea8d7ef0c3f57c582874b2/vueKoa/'
-const LOCALURL = 'http://localhost:3000/'
+const BASEURL = 'https://www.easy-mock.com/mock/5ae2eeb23fbbf24d8cd7f0b6/SmileVue/';
+const LOCALURL = 'http://localhost:3000/';
 const URL = {
   Home: BASEURL + 'index',
-  getGoodsInfo: BASEURL + 'goodinfo',
-  registerUser: LOCALURL + 'user/register'
-}
+  getGoodsInfo: BASEURL + 'getGoodsInfo',
+  registerUser: LOCALURL + 'user/register',
+  login: LOCALURL + 'user/login'
+};
 
-module.exports = URL
+module.exports = URL;
