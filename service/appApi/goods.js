@@ -69,4 +69,67 @@ router.get('/insertAllCategorySub', async (ctx) => {
     })
   })
 })
+// 获取商品详情接口
+router.post('/getDetailGoodsInfo', async (ctx) => {
+  try {
+    let goodsId = ctx.request.body.goodsId
+    const Goods = mongoose.model('Goods')
+    const result = await Goods.findOne({ ID: goodsId }).exec()
+    ctx.body = { code: 200, message: result }
+  } catch (error) {
+    console.log('获取商品详情接口error', error);
+    ctx.body = { code: 500, message: error }
+  }
+  // let goodsId = ctx.request.body.goodsId
+  // const Goods = mongoose.model('Goods')
+  // await Goods.findOne({ ID: goodsId }).exec()
+  //   .then(async (result) => {
+  //     ctx.body = { code: 200, message: result }
+  //   })
+  //   .catch(error => {
+  //     console.log('获取商品详情接口error',error);
+  //     ctx.body = { code: 500, message: error }
+  //   })
+})
+// 获取商品大类
+router.get('/getCategoryList', async (ctx) => {
+  try {
+    const Category = mongoose.model('Category')
+    let result = await Category.find().exec()
+    console.log('查询到的结果', result);
+    ctx.body = { code: 200, message: result }
+  } catch (e) {
+    ctx.body = { code: 500, message: e }
+  }
+})
+// 获取小类别的接口
+router.post('/getCategorySubList', async (ctx) => {
+  try {
+    let categoryId = ctx.request.body.categoryId
+    // let categoryId = '1'
+    const CategorySub = mongoose.model('Category_Sub')
+    let result = await CategorySub.find({ MALL_CATEGORY_ID: categoryId }).exec()
+    ctx.body = { code: 200, message: result }
+  } catch (e) {
+    ctx.body = { code: 500, message: e }
+  }
+})
+//根据商品类别获取商品列表
+router.post('/getGoodsListByCategorySubId', async (ctx) => {
+  try {
+    let categorySubId = ctx.request.body.categoryId
+    let page = ctx.request.body.page
+    let num = 3
+    let start = (page - 1) * num
+    // let categorySubId = '1'
+    const Goods = mongoose.model('Goods')
+    let result = await Goods.find({ SUB_ID: categorySubId })
+      .skip(start).limit(num).exec()
+    ctx.body = { code: 200, message: result }
+  } catch (e) {
+    ctx.body = { code: 500, message: e }
+  }
+
+
+})
 module.exports = router;
